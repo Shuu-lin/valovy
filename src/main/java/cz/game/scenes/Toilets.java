@@ -4,7 +4,6 @@ import cz.game.Registry;
 import cz.game.TheGame;
 import cz.game.dialog.Dialog;
 import cz.game.dialog.DialogStep;
-import cz.game.inventory.InventoryItem;
 import cz.game.inventory.Items;
 import cz.game.inventory.items.Shit;
 import cz.game.objects.Item;
@@ -13,7 +12,6 @@ import cz.game.objects.State;
 import java.awt.*;
 
 import static cz.game.Registry.Vals.TOLIET_VYDEJ_OPENED;
-import static cz.game.inventory.Items.SHIT;
 
 public class Toilets extends Scene {
 	private final static String RESOURCE_PREFIX = "/scenes/toilets/";
@@ -58,7 +56,7 @@ public class Toilets extends Scene {
 		createShitOpened.setCondition((game) -> Registry.contains(TOLIET_VYDEJ_OPENED));
 		createShitOpened.setAnswer("Jasně Valový, tobě rád naseru");
 		createShitOpened.setOnClick((dialog -> {
-			Item shit = new Item("/scenes/garage/shit.png", State.COLLECT, 865, 350, "Sebrat hovno", Items.SHIT);
+			Item shit = new Item("/inventoryItems/shit.png", State.COLLECT, 865, 350, "Sebrat hovno", Items.SHIT);
 			shit.setVisible(true);
 			shit.setOnClickWithoutItem(() -> {
 				TheGame.instance.getInventoryPanel().addInventoryItem(Shit.create());
@@ -73,6 +71,11 @@ public class Toilets extends Scene {
 		wolfDialog = new Dialog(wolf, wolfDialogSteps);
 		wolf.setOnClickWithoutItem(() -> wolfDialog.start());
 		this.objects.add(wolf);
+
+		Item walkAway = new Item(RESOURCE_PREFIX + "walk_away.png", State.MOVE, 0, 569, "Jít pryč",
+				Items.OUTSIDE_HRUSKA_WALK_AWAY);
+		walkAway.setOnClickWithoutItem(() -> TheGame.instance.loadScene(Scenes.MAP));
+		this.objects.add(walkAway);
 
 	}
 }

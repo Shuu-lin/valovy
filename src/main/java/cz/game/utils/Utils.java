@@ -2,9 +2,12 @@ package cz.game.utils;
 
 import cz.game.TheGame;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Utils {
 	private static Cursor useCursor;
@@ -52,9 +55,12 @@ public class Utils {
 	}
 
 	public static Cursor getCursorByName(String filename) {
+		InputStream imgStream = TheGame.class.getResourceAsStream("/resources/cursors/" + filename);
+
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image image = toolkit.getImage(TheGame.class.getResource("/cursors/" + filename));
-		return toolkit.createCustomCursor(image, new Point(0, 0), "asdas");
+		Image a = image.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		return toolkit.createCustomCursor(a, new Point(0, 0), "asdas");
 	}
 
 	public static Image iconToImage(Icon icon) {

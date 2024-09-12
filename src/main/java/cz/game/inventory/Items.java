@@ -21,6 +21,7 @@ public enum Items {
 	// MAP
 	MAP_CHURCH("Kostel"),
 	MAP_HOME("Domů"),
+	MAP_HRUSKA("Hruška"),
 
 	// HOME WINDOW
 	HOME_WINDOW_BACK("Zpátky"),
@@ -41,6 +42,17 @@ public enum Items {
 	// TOILETS
 	TOILETS_VYDEJOVE_OKNO_ZAVRENE("Výdejové okénko"),
 	TOILETS_WOLF("Wolf"),
+
+	// OUTSIDE HRUSKA
+	OUTSIDE_HRUSKA_SENO("Seno"),
+	OUTSIDE_HRUSKA_WALK_AWAY("Jít pryč"),
+	OUTSIDE_HRUSKA_KANAL("Kanál"),
+	OUTSIDE_HRUSKA_TRASH_BIN("Popelnice"),
+	OUTSIDE_HRUSKA_DVERE("Dveře do Hrušky"),
+
+	//	INSIDE HRUSKA
+	INSIDE_HRUSKA_HOVNO_KURATA("Exkrement u kuřat."),
+	INSIDE_HRUSKA_PHONE("Hlásič"),
 
 	// RANDOM FOR NOW TODO
 	PLASTIC_GLOVES("Gumové rukavice"),

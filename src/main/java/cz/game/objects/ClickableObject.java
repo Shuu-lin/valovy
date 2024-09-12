@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.function.Consumer;
 
@@ -35,13 +37,18 @@ public abstract class ClickableObject extends JLabel {
 
 	protected String originalToolTip;
 
-	public ClickableObject(URL imageUrl, int positionX, int positionY, String toolTip, Items itemName) {
-		this.setIcon(new ImageIcon(imageUrl));
-		this.setSize(this.getIcon().getIconWidth(), this.getIcon().getIconHeight());
+	public ClickableObject(InputStream imageStream, int positionX, int positionY, String toolTip, Items itemName) {
+        try {
+            this.setIcon(new ImageIcon(imageStream.readAllBytes()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.setSize(this.getIcon().getIconWidth(), this.getIcon().getIconHeight());
 		this.setLocation(positionX, positionY);
 		this.setToolTipText(toolTip);
 		this.itemName = itemName;
 		this.originalToolTip = toolTip;
+		this.setDoubleBuffered(true);
 
 		this.setVisible(true);
 
@@ -53,7 +60,7 @@ public abstract class ClickableObject extends JLabel {
 				if (!TheGame.instance.getGamePanel().isDialogActive()) {
 					if (TheGame.instance.getInventoryPanel().getSelectedItem().isPresent()) {
 						onClickWithItem.accept(TheGame.instance.getInventoryPanel().getSelectedItem().get());
-					} else {
+					} else if (onClickWithoutItem != null) {
 						onClickWithoutItem.run();
 					}
 				}
@@ -93,15 +100,21 @@ public abstract class ClickableObject extends JLabel {
 		this.paintAll(this.getGraphics());
 	}
 
+	public void setIcon(String string) {
+		this.setIcon(new ImageIcon(TheGame.class.getResource("/images/" + string)));
+	}
+
 	@Override
 	public JToolTip createToolTip() {
 		if (this.toolTip == null) {
 			JToolTip tip = super.createToolTip();
+			tip.setDoubleBuffered(true);
 			tip.setOpaque(false);
 			tip.setBorder(null);
-			tip.setForeground(Color.WHITE);
+			tip.setForeground(Color.BLACK);
 			tip.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 			tip.setCursor(this.getCursor());
+			tip.setBackground(Color.GREEN);
 			this.toolTip = tip;
 		}
 

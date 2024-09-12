@@ -16,4 +16,8 @@ public class DialogStep {
 	private Predicate<TheGame> condition;
 	private Consumer<Dialog> onClick;
 	private Sound speech;
+
+	public void addResponse (String text, DialogStep response) {
+		this.responses.put(text, response);
+	}
 }

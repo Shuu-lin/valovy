@@ -7,6 +7,8 @@ public class Registry {
 	public enum Vals {
 		TOLIET_VYDEJ_OPENED,
 		HOME_LETTER_DISCOVERED,
+		HOVNO_U_KURAT_CHECKED,
+		UKLID_KE_KURATUM_ZAVOLAN,
 	}
 	static private final Set<Vals> vals = new HashSet<>();
 

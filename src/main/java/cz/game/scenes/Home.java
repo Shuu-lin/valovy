@@ -44,7 +44,7 @@ public class Home extends Scene {
 					TheGame.instance.setSelectedItem(null);
 					window.setItemName(Items.HOME_WINDOW_SHIT);
 					window.changeTooltip("Vykouknout z okna pomazaného hovnem", true);
-					window.setIcon(new ImageIcon(TheGame.class.getResource("/images/" + RESOURCE_PREFIX + "shitStainedWindow.png")));
+					window.setIcon(RESOURCE_PREFIX + "shitStainedWindow.png");
 					item.delete();
 					window.setOnClickWithItem(null);
 					TheGame.instance.getDialogPanel().showMessage("Pomazal jsi okno hovnem.");
@@ -138,7 +138,5 @@ public class Home extends Scene {
 			TheGame.instance.loadScene(Scenes.LETTER_HOME);
 		});
 		this.objects.add(letter);
-
-		TheGame.instance.getInventoryPanel().addInventoryItem(PlasticGloves.create());
 	}
 }

@@ -6,7 +6,7 @@ import cz.game.inventory.Items;
 public class Item extends ClickableObject {
 
 	public Item(String imageName, State state, int locationX, int locationY, String toolTip, Items itemName) {
-		super(TheGame.class.getResource("/images/" + imageName),
+		super(TheGame.class.getClassLoader().getResourceAsStream("/images/" + imageName),//TheGame.class.getResourceAsStream("/images/" + imageName),
 		      locationX,
 		      locationY,
 		      toolTip,

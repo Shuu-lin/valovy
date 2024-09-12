@@ -15,7 +15,11 @@ public class Map extends Scene {
 		church.setOnClickWithoutItem(() -> TheGame.instance.loadScene(Scenes.OUTSIDE_CHURCH));
 		this.objects.add(church);
 
-		Item home = new Item(RESOURCE_PREFIX + "home.png", State.MOVE, 17, 44, "Domů", Items.MAP_CHURCH);
+		Item hruska = new Item(RESOURCE_PREFIX + "hruska.png", State.MOVE, 1169, 507, "K Hrušce", Items.MAP_HRUSKA);
+		hruska.setOnClickWithoutItem(() -> TheGame.instance.loadScene(Scenes.OUTSIDE_HRUSKA));
+		this.objects.add(hruska);
+
+		Item home = new Item(RESOURCE_PREFIX + "home.png", State.MOVE, 17, 44, "Domů", Items.MAP_HOME);
 		home.setOnClickWithoutItem(() -> TheGame.instance.loadScene(Scenes.OUTSIDE_HOME));
 		this.objects.add(home);
 	}
